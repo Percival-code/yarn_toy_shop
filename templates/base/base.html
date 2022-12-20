@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Yarn Toy Shop</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+</head>
+
+<body>
+<div id="box">
+    <header>
+        <nav>
+            <img src="{% static 'images/yarn-ball-icon.png' %}" alt="yarn-toy">
+            <a href="{% url 'index' %}">Home</a>
+            <ul></ul>
+            <ul>
+                {% if request.user.is_authenticated %}
+                    {% if request.user.is_staff %}
+                        <li><a href="#">Create Product</a></li>
+                    {% endif %}
+
+                    <li><a href="{% url 'details user' pk=request.user.pk %}">Profile</a></li>
+
+                    <li><a href="{% url 'logout user' %}">Sign Out</a></li>
+                {% else %}
+                    <li><a href="{% url 'login user' %}">Sign In</a></li>
+                    <li><a href="{% url 'register user' %}">Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    {% block page_content %}
+    {% endblock %}
+    <footer>
+        <div>
+            &copy;Kaloyan Madzharov "Percival's code" 2022. All rights reserved.
+        </div>
+    </footer>
+</div>
+</body>
+</html>

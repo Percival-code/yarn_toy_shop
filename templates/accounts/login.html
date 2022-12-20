@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+{% load placeholders %}
+{% load static %}
+{% block page_content %}
+    <div class="container-inline">
+        <section id="welcomePage">
+            <div id="welcome-message">
+                <h1>Welcome to yarn toy shop</h1>
+            </div>
+            <div class="music-img">
+                <img src="{% static 'images/yarn_toys.jpg' %}" alt="yarn-toys-icon">
+            </div>
+        </section>
+
+        <!-- Registration -->
+        <section id="registerPage">
+            <form method="post" action="{% url 'login user' %}">
+                <fieldset>
+                    <legend>Login</legend>
+                     {{ form }}
+                    <input type="hidden" name="next" value="{{ next }}">
+                    <button type="submit" class="login">Sign In</button>
+                    {% csrf_token %}
+                </fieldset>
+            </form>
+        </section>
+    </div>
+{% endblock %}
