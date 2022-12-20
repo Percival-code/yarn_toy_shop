@@ -1,7 +1,6 @@
 from django.urls import path, include
 
-from yarn_toy_shop.accounts.views import SignUpView, SignInView, SignOutView, UserDetailsView, UserEditView, \
-    UserDeleteView
+from yarn_toy_shop.accounts.views import SignUpView, SignInView, SignOutView, UserDetailsView, UserDeleteView
 
 urlpatterns = (
     path('register/', SignUpView.as_view(), name='register user'),
@@ -9,7 +8,6 @@ urlpatterns = (
     path('logout/', SignOutView.as_view(), name='logout user'),
     path('profile/<int:pk>/', include([
         path('', UserDetailsView.as_view(), name='details user'),
-        path('edit/', UserEditView.as_view(), name='edit user'),
         path('delete/', UserDeleteView.as_view(), name='delete user'),
     ]))
 )

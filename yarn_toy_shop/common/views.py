@@ -9,8 +9,8 @@ UserModel = get_user_model()
 
 
 def index(request):
-    if request.user.is_authenticated:
-        return render(request, 'home/index.html')
+    # if request.user.is_authenticated:
+    return render(request, 'home/index.html')
 
 # else:
 #

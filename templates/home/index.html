@@ -5,27 +5,24 @@
         <h1>Yarn Toys</h1>
         <!-- First Card-Box in catalog -->
         <div class="card-box">
-            <img src="{% static 'images/BrandiCarlile.png' %}" alt="Cover Image">
+            {{ for product in product_set }}
+{#        TODO: check product_set is valid !#}
+            <img src="{{ product.product_photo }}" alt="Cover Image">
             <div>
                 <div class="text-center">
-                    <p class="name">Name: In These Silent Days</p>
-                    <p class="artist">Artist: Brandi Carlile</p>
-                    <p class="price">Price: $12.80</p>
+                    <p class="name">Name: {{ product.name }}</p>
+                    <p class="artist">Description: {{ product.description }}</p>
+                    <p class="price">Price: {{ product.price }}</p>
                 </div>
                 <div class="btn-group">
                     {% if request.user.is_authenticated %}
-                        {% if request.user.is_staff %}
-                            <a href="{% url 'details product' %}">Details</a>
-                        {% else %}
-                            <a href="{% url 'details product' %}">Buy</a>
-                        {% endif %}
-
+                        <a href="{% url 'details product' %}">Details</a>
+                    {% else %}
+                        <a href="{% url 'details product' %}">Buy</a>
                     {% endif %}
                 </div>
             </div>
+            {{ endfor }}
         </div>
-        <!-- End First Card-Box in catalog -->
-
-
     </section>
 {% endblock %}

@@ -24,9 +24,7 @@ class SignInView(auth_views.LoginView):
     template_name = 'accounts/login.html'
 
     def get_success_url(self):
-        return reverse_lazy('details user', kwargs={
-            'pk': self.request.user.pk,
-        })
+        return reverse_lazy('index')
 
 
 class SignOutView(auth_views.LogoutView):
@@ -39,17 +37,6 @@ class SignOutView(auth_views.LogoutView):
 class UserDetailsView(generic_view.DetailView):
     template_name = 'accounts/profile-details.html'
     model = UserModel
-
-
-class UserEditView(generic_view.UpdateView):
-    template_name = 'accounts/profile-details.html'
-    model = UserModel
-    fields = ('first_name', 'last_name', 'email',)
-
-    def get_success_url(self):
-        return reverse_lazy('details user', kwargs={
-            'pk': self.request.user.pk,
-        })
 
 
 class UserDeleteView(generic_view.DeleteView):
