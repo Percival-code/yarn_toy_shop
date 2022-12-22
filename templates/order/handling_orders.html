@@ -5,18 +5,17 @@
         <h1>Yarn Toys</h1>
         <!-- First Card-Box in catalog -->
         <div class="card-box">
-            {% for product in products %}
+            {% for order in orders %}
             {#        TODO: check product_set is valid !#}
-            <img src="{{ product.product_photo }}" alt="Cover Image">
             <div>
                 <div class="text-center">
-                    <p class="name">Name: {{ product.name }}</p>
-                    <p class="price">Price: {{ product.price }}</p>
+                    <p class="name">Name: {{ order.first_name }} {{ order.last_name }}</p>
+                    <p class="price">Price: {{ order.price }}</p>
+                    <p class="address">Price: {{ order.address }}</p>
+                    <p class="telephone">Price: {{ order.telephone_number }}</p>
                 </div>
                 <div class="btn-group">
-                    {% if request.user.is_authenticated %}
-                        <a href="{% url 'details product' pk=product.pk %}">Details</a>
-                    {% endif %}
+                    <a href="{% url 'change orders status' pk=order.pk %}">Ready</a>
                 </div>
             </div>
             {% endfor %}

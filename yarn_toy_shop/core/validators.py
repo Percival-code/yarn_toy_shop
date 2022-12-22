@@ -9,8 +9,8 @@ def only_letter_validator(current_str):
 
 def telephone_number_length_validator(number):
     correct_length = 10
-    correct_length_two = 12
-    if number != correct_length and number != correct_length_two:
+    correct_length_two = 13
+    if len(number) < correct_length and len(number) < correct_length_two:
         raise exceptions.ValidationError(f'Telephone number length must be {correct_length} or {correct_length_two}')
 
 

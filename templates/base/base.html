@@ -20,10 +20,11 @@
                 {% if request.user.is_authenticated %}
                     {% if request.user.is_staff %}
                         <li><a href="{% url 'add product' %}">Create Product</a></li>
+                        <li><a href="{% url 'handling orders' %}">Handle Orders</a></li>
                     {% endif %}
 
                     <li><a href="{% url 'details user' pk=request.user.pk %}">Profile</a></li>
-
+                    <a href="{% url 'make order' %}">Buy</a>
                     <li><a href="{% url 'logout user' %}">Sign Out</a></li>
                 {% else %}
                     <li><a href="{% url 'login user' %}">Sign In</a></li>

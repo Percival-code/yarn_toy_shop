@@ -16,17 +16,3 @@ def index(request):
         'products': products
     }
     return render(request, 'home/index.html', context)
-
-# else:
-#
-#     if request.method == 'GET':
-#         form = UserCreateForm(instance=UserModel)
-#     else:
-#         form = UserCreateForm(request.POST, instance=UserModel)
-#         if form.is_valid():
-#             form.save()
-#
-#     context = {
-#         'form': form,
-#     }
-#     return render(request, 'home/register.html', context)

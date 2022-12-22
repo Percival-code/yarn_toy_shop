@@ -37,3 +37,4 @@ class OrderBaseForm(forms.ModelForm):
 
 class OrderMakeForm(OrderBaseForm):
     pass
+

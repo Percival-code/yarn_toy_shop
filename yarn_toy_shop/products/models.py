@@ -36,6 +36,9 @@ class Product(models.Model):
 
         return super().save(*args, **kwargs)
 
+    def __str__(self):
+        return f'{self.name}'
+
 
 class Order(models.Model):
     MAX_FIRST_NAME_LEN = 40
@@ -46,11 +49,6 @@ class Order(models.Model):
 
     product = models.ForeignKey(
         Product,
-        on_delete=models.RESTRICT,
-    )
-
-    user = models.ForeignKey(
-        UserModel,
         on_delete=models.RESTRICT,
     )
 
@@ -90,4 +88,8 @@ class Order(models.Model):
         blank=False,
     )
 
-    is_send = models.BooleanField()
+    is_send = models.BooleanField(
+        default=False,
+        null=True,
+        blank=True,
+    )

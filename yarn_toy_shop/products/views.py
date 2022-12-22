@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views import generic as generic_view
 
 from yarn_toy_shop.products.forms import ProductCreateForm, ProductDeleteForm, OrderMakeForm
-from yarn_toy_shop.products.models import Product
+from yarn_toy_shop.products.models import Product, Order
 
 
 def create_product(request):
@@ -66,7 +66,6 @@ def delete_product(request, pk):
 
 
 def make_order(request):
-
     if request.method == 'GET':
         form = OrderMakeForm()
     else:
@@ -81,6 +80,24 @@ def make_order(request):
 
     return render(
         request,
-        'products/add-product.html',
+        'order/add-order.html',
         context,
     )
+
+
+def handling_orders(request):
+    orders = Order.objects.all().filter(is_send=False)
+    context = {
+        'orders': orders
+    }
+    return render(request, 'order/handling_orders.html', context)
+
+
+def change_order_status(request, pk):
+    current_order = Order.objects \
+        .filter(pk=pk) \
+        .get()
+
+    current_order.is_send = True
+    current_order.save()
+    return redirect('handling orders')
