@@ -5,24 +5,23 @@
         <h1>Yarn Toys</h1>
         <!-- First Card-Box in catalog -->
         <div class="card-box">
-            {{ for product in product_set }}
-{#        TODO: check product_set is valid !#}
+            {% for product in products %}
+            {#        TODO: check product_set is valid !#}
             <img src="{{ product.product_photo }}" alt="Cover Image">
             <div>
                 <div class="text-center">
                     <p class="name">Name: {{ product.name }}</p>
-                    <p class="artist">Description: {{ product.description }}</p>
                     <p class="price">Price: {{ product.price }}</p>
                 </div>
                 <div class="btn-group">
-                    {% if request.user.is_authenticated %}
-                        <a href="{% url 'details product' %}">Details</a>
+                    {% if request.user.is_staff %}
+                        <a href="{% url 'details product' pk=product.pk %}">Details</a>
                     {% else %}
-                        <a href="{% url 'details product' %}">Buy</a>
+                        <a href="{% url 'make order' %}">Buy</a>
                     {% endif %}
                 </div>
             </div>
-            {{ endfor }}
+            {% endfor %}
         </div>
     </section>
 {% endblock %}

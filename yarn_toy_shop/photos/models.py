@@ -1,7 +1,6 @@
-from django.contrib.auth import get_user_model
 from django.db import models
 
-UserModel = get_user_model()
+from yarn_toy_shop.products.models import Product
 
 
 class Photo(models.Model):
@@ -17,7 +16,7 @@ class Photo(models.Model):
         blank=True,
     )
 
-    user = models.ForeignKey(
-        UserModel,
+    current_product = models.ForeignKey(
+        Product,
         on_delete=models.RESTRICT,
     )

@@ -6,50 +6,50 @@
     margin: 30px auto 200px;
 }
 
-.albumCover, .profilePage {
+.productCover, .profilePage {
     float: left;
     height: 100%;
     width: auto;
     margin-right: 20px;
 }
 
-.albumCover img, .profilePage img {
+.productCover img, .profilePage img {
     border-radius: 12px 0 0 7px;
     height: 100%;
 }
 
-.albumText, .profileText {
+.productText, .profileText {
     padding-left: 10px;
     padding-top: 20px;
 }
 
-.albumText h1, .profileText h1 {
+.productText h1, .profileText h1 {
     color:gainsboro;
     font-weight: bolder;
     font-size: 28px;
 }
 
-.albumText h3 {
+.productText h3 {
     font-size: 18px;
     color: gray;
     letter-spacing: 0.2em;
     margin: 8px 0 0 18px;
 }
 
-.albumText h4 {
+.productText h4 {
     margin: 8px 0 10px 18px;
     font-size: 16px;
     color: #9F9991;
     letter-spacing: 0.2em;
 }
 
-.albumText h5 {
+.productText h5 {
     margin: 8px 0 10px 14px;
     font-size: 16px;
     color: white;
 }
 
-.albumText > p, .profileText > p {
+.productText > p, .profileText > p {
     height: auto;
     width: 100%;
     color: #9F9991;

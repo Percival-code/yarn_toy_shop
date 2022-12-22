@@ -1,15 +1,29 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic as generic_view
 
-from yarn_toy_shop.products.forms import ProductCreateForm
+from yarn_toy_shop.products.forms import ProductCreateForm, ProductDeleteForm, OrderMakeForm
 from yarn_toy_shop.products.models import Product
 
 
-class ProductCreateView(generic_view.CreateView):
-    template_name = 'products/add-product.html'
-    model = Product
-    form_class = ProductCreateForm
+def create_product(request):
+    if request.method == 'GET':
+        form = ProductCreateForm()
+    else:
+        form = ProductCreateForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+
+    context = {
+        'form': form,
+    }
+
+    return render(
+        request,
+        'products/add-product.html',
+        context,
+    )
 
 
 class ProductDetailsView(generic_view.DetailView):
@@ -20,15 +34,53 @@ class ProductDetailsView(generic_view.DetailView):
 class ProductEditView(generic_view.UpdateView):
     template_name = 'products/edit-product.html'
     model = Product
-    fields = ('description', 'price')
-    success_url = reverse_lazy('details product')
-
-
-class ProductDeleteView(generic_view.DeleteView):
-    template_name = 'products/edit-product.html'
-    model = Product
+    fields = ('name', 'price')
     success_url = reverse_lazy('index')
 
 
-class BuyProductView():
-    pass
+def delete_product(request, pk):
+    product = Product.objects \
+        .filter(pk=pk) \
+        .get()
+
+    if request.method == 'GET':
+        form = ProductDeleteForm(instance=product)
+    else:
+        form = ProductDeleteForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+
+    context = {
+        'form': form,
+    }
+
+    return render(
+        request,
+        'products/delete-product.html',
+        context,
+    )
+
+
+# TODO: deleting not ready check it
+
+
+def make_order(request):
+
+    if request.method == 'GET':
+        form = OrderMakeForm()
+    else:
+        form = OrderMakeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+
+    context = {
+        'form': form,
+    }
+
+    return render(
+        request,
+        'products/add-product.html',
+        context,
+    )

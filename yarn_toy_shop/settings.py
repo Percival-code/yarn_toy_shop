@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'yarn_toy_shop.accounts',
-    'yarn_toy_shop.orders',
     'yarn_toy_shop.photos',
     'yarn_toy_shop.products',
     'yarn_toy_shop.common'

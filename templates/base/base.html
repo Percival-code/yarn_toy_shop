@@ -19,7 +19,7 @@
             <ul>
                 {% if request.user.is_authenticated %}
                     {% if request.user.is_staff %}
-                        <li><a href="#">Create Product</a></li>
+                        <li><a href="{% url 'add product' %}">Create Product</a></li>
                     {% endif %}
 
                     <li><a href="{% url 'details user' pk=request.user.pk %}">Profile</a></li>

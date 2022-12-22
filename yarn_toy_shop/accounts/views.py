@@ -13,11 +13,7 @@ class SignUpView(generic_view.CreateView):
     template_name = 'accounts/register.html'
     model = UserModel
     form_class = UserCreateForm
-
-    def get_success_url(self):
-        return reverse_lazy('details user', kwargs={
-            'pk': self.request.user.pk,
-        })
+    success_url = reverse_lazy('index')
 
 
 class SignInView(auth_views.LoginView):
