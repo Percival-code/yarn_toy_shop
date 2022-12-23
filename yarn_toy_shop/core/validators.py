@@ -18,6 +18,6 @@ def telephone_number_validator(number):
     correct_number = "08"
     correct_number_two = '+359'
     checking_symbols = number[:3]
-    if checking_symbols != correct_number and correct_number_two != correct_number_two:
+    if checking_symbols[:1] != correct_number and checking_symbols != correct_number_two:
         raise exceptions.ValidationError(
             f'Telephone number must start with `{correct_number}` or `{correct_number_two}`!')
