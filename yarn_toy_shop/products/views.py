@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic as generic_view
 
+from yarn_toy_shop.photos.models import Photo
 from yarn_toy_shop.products.forms import ProductCreateForm, ProductDeleteForm, OrderMakeForm
 from yarn_toy_shop.products.models import Product, Order
 
@@ -43,16 +44,22 @@ def delete_product(request, pk):
         .filter(pk=pk) \
         .get()
 
+    orders = Order.objects.filter(product__name__icontains=product.pk).all()
+    photos = Photo.objects.filter(current_product__name__icontains=product.pk).all()
+
     if request.method == 'GET':
         form = ProductDeleteForm(instance=product)
     else:
         form = ProductDeleteForm(request.POST, instance=product)
         if form.is_valid():
+            orders.delete()
+            photos.delete()
             form.save()
             return redirect('index')
 
     context = {
         'form': form,
+        'product': product,
     }
 
     return render(
@@ -60,6 +67,11 @@ def delete_product(request, pk):
         'products/delete-product.html',
         context,
     )
+
+# class ProductDeleteView(generic_view.DeleteView):
+    template_name = 'products/delete-product.html'
+    model = Product
+    success_url = reverse_lazy('index')
 
 
 # TODO: deleting not ready check it

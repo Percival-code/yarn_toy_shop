@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
     <section class="editPage">
-        <form method="post" action="{% url 'delete product' pk=product.pk%}">
+        <form method="post" action="{% url 'delete product' pk=product.pk %}">
             <fieldset>
                 <legend>Delete Product</legend>
                 <div class="container">

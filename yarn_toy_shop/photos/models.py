@@ -18,5 +18,5 @@ class Photo(models.Model):
 
     current_product = models.ForeignKey(
         Product,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
     )

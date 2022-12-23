@@ -3,16 +3,14 @@
 {% block page_content %}
     <section id="catalogPage">
         <h1>Yarn Toys</h1>
-        <!-- First Card-Box in catalog -->
         <div class="card-box">
             {% for product in products %}
-            {#        TODO: check product_set is valid !#}
             <img src="{{ product.product_photo }}" alt="Cover Image">
             <div>
-                <div class="text-center">
-                    <p class="name">Name: {{ product.name }}</p>
-                    <p class="price">Price: {{ product.price }}</p>
-                </div>
+{#                <div class="text-center">#}
+{#                    <p class="name">Name: {{ product.name }}</p>#}
+{#                    <p class="price">Price: {{ product.price|floatformat:2 }}</p>#}
+{#                </div>#}
                 <div class="btn-group">
                     {% if request.user.is_authenticated %}
                         <a href="{% url 'details product' pk=product.pk %}">Details</a>
